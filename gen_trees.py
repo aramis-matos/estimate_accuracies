@@ -1,21 +1,16 @@
 import re
 import os
 
-x = []
-with open('trees.txt') as f:
-    for line in f.readlines():
-        y = re.findall(r'\(.+\)', line)
-        if y:
-            x.append(y[0]+';')
 
-xs = x[1:len(x)]
+with open('trees.txt') as f:
+    xs = re.findall(r'\(.+\)\;', f.read())
 
 for val in range(len(xs)):
-    with open(f'new_trees/tree{val}.tree','w') as out:
+    with open(f'new_trees/tree{val}.tree', 'w') as out:
         out.write(xs[val])
 
 with open('p3_out_TRUE.phy', 'r') as phy:
-    phys = re.split(r'\n+\s{5}',phy.read()) 
+    phys = re.split(r'\n+\s{5}', phy.read())
 
 for val in (range(len(phys))):
     with open(f'phys/phy{val}.phy', 'w') as out:
